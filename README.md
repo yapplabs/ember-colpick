@@ -1,6 +1,6 @@
 # Ember-colpick
 
-An ember component for http://colpick.com/ 
+A color picker component for ember using http://colpick.com/ 
 
 ## Usage
 
