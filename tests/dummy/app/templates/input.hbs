@@ -8,3 +8,18 @@ preview: {{previewColor}}
 
 {{view Ember.Select content=colorSchemes value=colorScheme}}
 {{view Ember.Select content=layouts      value=layout}}
+
+<h2>code</h2>
+
+<pre>
+\{{col-pick-input value=color
+           previewValue=previewColor
+           colorScheme=colorScheme
+           colpickLayoutName=layout}}
+
+color: \{{color}}
+preview: \{{previewColor}}
+
+\{{view Ember.Select content=colorSchemes value=colorScheme}}
+\{{view Ember.Select content=layouts      value=layout}}
+</pre>
