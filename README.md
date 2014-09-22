@@ -1,14 +1,23 @@
 # Ember-colpick
 
-This README outlines the details of collaborating on this Ember addon.
+An ember component for http://colpick.com/ 
 
-## Installation
+## Usage
+
+* `npm install --save ember-colpick`
+* `ember g ember-colpick`
+
+```hbs
+{{col-pick value=color}}
+```
+
+## Development
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
 
-## Running
+## Previewing
 
 * `ember server`
 * Visit your app at http://localhost:4200.
