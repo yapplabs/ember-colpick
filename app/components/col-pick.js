@@ -26,7 +26,7 @@ function onRenderObserver(/*keys..., fn*/) {
 }
 
 export default Ember.TextField.extend({
-  layoutName: 'hex',
+  colpickLayout: 'hex',
   colorScheme: 'dark',
 
   value: null,
@@ -34,7 +34,7 @@ export default Ember.TextField.extend({
 
   _colpick: undefined,
 
-  configDidChange: onRenderObserver('colorScheme', 'layoutName', function(){
+  configDidChange: onRenderObserver('colorScheme', 'colpickLayout', function(){
     this._tearDownColpick();
     this.rerender();
   }),
@@ -48,7 +48,7 @@ export default Ember.TextField.extend({
   _setupColpick: function() {
     var component = this;
 
-    var layout = this.get('layoutName');
+    var layout = this.get('colpickLayout');
     var colorScheme = this.get('colorScheme');
 
     if (layout && colorScheme) {
