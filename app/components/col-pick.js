@@ -40,7 +40,9 @@ export default Ember.TextField.extend({
   }),
 
   valueDidChange: afterRenderObserver('value', function() {
-    this._colpick.colpickSetColor(this.get('value'));
+    if (this._colpick) {
+      this._colpick.colpickSetColor(this.get('value'));
+    }
   }),
 
   _setupColpick: function() {
