@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-function afterRenderObserver(/*keys..., fn*/) {
+function onRenderObserver(/*keys..., fn*/) {
   var args = Array.prototype.slice.call(arguments);
   var fn = args.slice(-1)[0];
   var keys = args.slice(0, -1);
@@ -11,7 +11,7 @@ function afterRenderObserver(/*keys..., fn*/) {
 
     if (state === 'inDOM') {
       // don't schedule unless inDOM
-      Ember.run.scheduleOnce('afterRender', this, function(){
+      Ember.run.scheduleOnce('render', this, function(){
         // don't run unless still inDOM
         if (this._state === 'inDOM') {
           fn.call(this);
@@ -34,12 +34,12 @@ export default Ember.TextField.extend({
 
   _colpick: undefined,
 
-  configDidChange: afterRenderObserver('colorScheme', 'layoutName', function(){
+  configDidChange: onRenderObserver('colorScheme', 'layoutName', function(){
     this._tearDownColpick();
     this.rerender();
   }),
 
-  valueDidChange: afterRenderObserver('value', function() {
+  valueDidChange: onRenderObserver('value', function() {
     if (this._colpick) {
       this._colpick.colpickSetColor(this.get('value'));
     }
