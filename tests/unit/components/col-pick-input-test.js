@@ -5,7 +5,7 @@ import {
 
 import Ember from 'ember';
 
-moduleForComponent('col-pick', 'ColPickComponent', {
+moduleForComponent('col-pick-input', 'ColPickComponentInput', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });
@@ -20,14 +20,15 @@ test('it renders', function() {
   equal(component._state, 'inDOM');
 });
 
-test('the popup is rendered inline', function() {
+test('clicking within opens the popup', function() {
   var component = this.subject();
 
   this.append();
 
   var popup = component.popup();
+  ok(!popup.is(':visible'), 'expected popup NOT to be visible');
 
-  equal(component.$(popup.selector).length, 1, 'is a child');
+  Ember.run(component.$(), 'trigger', 'click');
 
   ok(popup.is(':visible'), 'expected popup to be visible');
 });
