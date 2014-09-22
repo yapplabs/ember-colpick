@@ -10,7 +10,13 @@ function afterRenderObserver(/*keys..., fn*/) {
     var state = view._state;
 
     if (state === 'inDOM') {
-      Ember.run.scheduleOnce('afterRender', this, fn);
+      // don't schedule unless inDOM
+      Ember.run.scheduleOnce('afterRender', this, function(){
+        // don't run unless still inDOM
+        if (this._state === 'inDOM') {
+          fn.call(this);
+        }
+      });
     }
   };
  
