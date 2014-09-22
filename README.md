@@ -7,8 +7,14 @@ A color picker component for ember using http://colpick.com/
 * `npm install --save ember-colpick`
 * `ember g ember-colpick`
 
+inline color picker
 ```hbs
 {{col-pick value=color}}
+```
+
+popup for input color picker
+```hbs
+{{col-pick-input value=color}}
 ```
 
 ## Development
