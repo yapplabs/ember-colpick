@@ -1,4 +1,4 @@
-# Ember-colpick
+# Ember-colpick [![Build Status](https://travis-ci.org/yapplabs/ember-colpick.svg)](https://travis-ci.org/yapplabs/ember-colpick)
 
 A color picker component for ember using http://colpick.com/ 
 
