@@ -1,0 +1,11 @@
+{{col-pick value=color
+           previewValue=previewColor
+           colorScheme=colorScheme
+           layoutName=layout}}
+
+color: {{color}}
+preview: {{previewColor}}
+
+{{view Ember.Select content=colorSchemes value=colorScheme}}
+{{view Ember.Select content=layouts      value=layout}}
+
