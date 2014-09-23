@@ -64,6 +64,11 @@ export default Ember.Mixin.create( {
       }).keyup(function() {
         colpick.colpickSetColor(this.value);
       });
+
+      var value = this.get('value');
+      if (value) {
+        colpick.colpickSetColor(value);
+      }
     }
   },
 

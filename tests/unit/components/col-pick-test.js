@@ -65,3 +65,17 @@ test("two way binding with colpick", function() {
   equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
   equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
 });
+
+
+test("correctly renders initial bound value", function() {
+  var component = this.subject({
+    value: 'FFFFFF'
+  });
+
+  this.append();
+
+  var popup = component.popup();
+
+  equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
+  equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
+});
