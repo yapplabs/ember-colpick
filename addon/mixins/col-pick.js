@@ -26,6 +26,7 @@ function onRenderObserver(/*keys..., fn*/) {
 export default Ember.Mixin.create( {
   colpickLayoutName: 'hex',
   colorScheme: 'dark',
+  classNames: [ 'ember-col-pick' ],
   flat: true, // [true/false] render as popup (true) rendering inline (false)
   value: null,
   previewValue: null,
