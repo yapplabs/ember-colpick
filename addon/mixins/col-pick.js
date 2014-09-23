@@ -61,8 +61,13 @@ export default Ember.Mixin.create( {
             this.set('value', hex);
           }
         })
-      }).keyup(function() {
-        colpick.colpickSetColor(this.value);
+      });
+
+      colpick.find('input[type=text]').keyup(function() {
+        var hexInputVal = this.value;
+        if (hexInputVal.length === 6) {
+          colpick.colpickSetColor(hexInputVal);
+        }
       });
 
       var value = this.get('value');
