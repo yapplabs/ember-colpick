@@ -33,6 +33,27 @@ test('clicking within opens the popup', function() {
   ok(popup.is(':visible'), 'expected popup to be visible');
 });
 
+test('hiding fires the onHide action', function() {
+  expect(1);
+
+  var component = this.subject();
+  this.append();
+
+  var targetObject = {
+    hideAction: function(){
+      ok(true, 'hide action was called!');
+    }
+  };
+
+  component.set('onHide', 'hideAction');
+  component.set('targetObject', targetObject);
+
+  var popup = component.popup();
+
+  Ember.run(component.$(), 'trigger', 'click');
+  Ember.run(component.$(), 'trigger', 'mousedown'); // simulate clicking outside
+});
+
 test('destroying no longer leaks the popup', function() {
   var component = this.subject();
 

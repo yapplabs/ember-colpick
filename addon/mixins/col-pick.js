@@ -60,6 +60,9 @@ export default Ember.Mixin.create( {
           if (!bySetColor) {
             this.set('value', hex);
           }
+        }),
+        onHide: Ember.run.bind(this, function(){
+          this.sendAction('onHide');
         })
       });
 
