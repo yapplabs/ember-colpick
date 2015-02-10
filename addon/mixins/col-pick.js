@@ -39,8 +39,9 @@ export default Ember.Mixin.create( {
   }),
 
   valueDidChange: onRenderObserver('value', function() {
-    if (this._colpick) {
-      this._colpick.colpickSetColor(this.get('value'));
+    var value = this.get('value');
+    if (this._colpick && value) {
+      this._colpick.colpickSetColor(value);
     }
   }),
 
