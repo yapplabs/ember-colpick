@@ -30,6 +30,8 @@ export default Ember.Mixin.create( {
   flat: true, // [true/false] render as popup (true) rendering inline (false)
   value: null,
   previewValue: null,
+  styles: null,
+  appendTo: null,
 
   _colpick: undefined,
 
@@ -53,6 +55,8 @@ export default Ember.Mixin.create( {
       var colpick = this._colpick = this.$().colpick({
         layout: layout,
         colorScheme: colorScheme,
+        styles: this.get('styles'),
+        appendTo: this.get('appendTo'),
         submit: 0,
         flat: this.get('flat'),
         onChange: Ember.run.bind(this, function(hsb, hex, rgb, el, bySetColor) {
