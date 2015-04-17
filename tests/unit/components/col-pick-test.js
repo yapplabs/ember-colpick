@@ -10,72 +10,72 @@ moduleForComponent('col-pick', 'ColPickComponent', {
   // needs: ['component:foo', 'helper:bar']
 });
 
-test('it renders', function() {
-  expect(2);
+test('it renders', function(assert) {
+  assert.expect(2);
 
   var component = this.subject();
-  equal(component._state, 'preRender');
+  assert.equal(component._state, 'preRender');
 
-  this.append();
-  equal(component._state, 'inDOM');
+  this.render();
+  assert.equal(component._state, 'inDOM');
 });
 
-test('the popup is rendered inline', function() {
+test('the popup is rendered inline', function(assert) {
   var component = this.subject();
 
-  this.append();
+  this.render();
 
   var popup = component.popup();
 
-  equal(component.$(popup.selector).length, 1, 'is a child');
+  assert.equal(component.$(popup.selector).length, 1, 'is a child');
 
-  ok(popup.is(':visible'), 'expected popup to be visible');
+  assert.ok(popup.is(':visible'), 'expected popup to be visible');
 });
 
-test('destroying no longer leaks the popup', function() {
+test('destroying no longer leaks the popup', function(assert) {
   var component = this.subject();
 
-  this.append();
+  this.render();
 
   var popup = component.popup();
 
   Ember.run(component, 'destroy');
 
-  equal(Ember.$(popup.selector).length, 0);
+  assert.equal(Ember.$(popup.selector).length, 0);
 });
 
 function style(selector, scope) {
   return Ember.$.trim(Ember.$(selector, scope).attr('style'));
 }
 
-test("two way binding with colpick", function() {
+test("two way binding with colpick", function(assert) {
   var component = this.subject();
 
-  this.append();
+  this.render();
 
   var popup = component.popup();
 
   Ember.run(component, 'set', 'value', '000000');
 
-  equal(style('.colpick_new_color', popup), 'background-color: rgb(0, 0, 0);', 'a');
-  equal(style('.colpick_current_color', popup), 'background-color: rgb(0, 0, 0);', 'b');
+  assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(0, 0, 0);', 'a');
+  assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(0, 0, 0);', 'b');
 
   Ember.run(component, 'set', 'value', 'FFFFFF');
 
-  equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
-  equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
+  assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
+  assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
 });
 
 
-test("correctly renders initial bound value", function() {
+test("correctly renders initial bound value", function(assert) {
   var component = this.subject({
     value: 'FFFFFF'
   });
 
-  this.append();
+  this.render();
 
   var popup = component.popup();
 
-  equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
-  equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
+  assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
+  assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
 });

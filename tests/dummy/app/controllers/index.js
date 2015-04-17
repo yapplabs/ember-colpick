@@ -1,13 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  layouts: [
+  colorScheme: 'dark',
+  layout: 'full',
+  layouts: Ember.A([
     'full',
     'hex',
     'rgbhex',
-  ],
-  colorSchemes: [
+  ]),
+  colorSchemes: Ember.A([
     'dark',
     'light'
-  ]
+  ])
 });

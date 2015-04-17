@@ -1,13 +1,13 @@
 {{col-pick-input value=color
            previewValue=previewColor
            colorScheme=colorScheme
-           colpickLayoutName=layout}}
+           colpickLayout=layout}}
 
 color: {{color}}
 preview: {{previewColor}}
 
-{{view Ember.Select content=colorSchemes value=colorScheme}}
-{{view Ember.Select content=layouts      value=layout}}
+{{view "select" content=colorSchemes value=colorScheme}}
+{{view "select" content=layouts      value=layout}}
 
 <h2>code</h2>
 
@@ -15,11 +15,11 @@ preview: {{previewColor}}
 \{{col-pick-input value=color
            previewValue=previewColor
            colorScheme=colorScheme
-           colpickLayoutName=layout}}
+           colpickLayout=layout}}
 
 color: \{{color}}
 preview: \{{previewColor}}
 
-\{{view Ember.Select content=colorSchemes value=colorScheme}}
-\{{view Ember.Select content=layouts      value=layout}}
+\{{view "select" content=colorSchemes value=colorScheme}}
+\{{view "select" content=layouts      value=layout}}
 </pre>

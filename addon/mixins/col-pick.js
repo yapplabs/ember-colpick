@@ -6,25 +6,23 @@ function onRenderObserver(/*keys..., fn*/) {
   var keys = args.slice(0, -1);
 
   var observer = function() {
-    var view = this;
-    var state = view._state;
-
-    if (state === 'inDOM') {
+    if (this._state !== 'inDOM') {
       // don't schedule unless inDOM
-      Ember.run.schedule('render', this, function() {
-        // don't run unless still inDOM
-        if (this._state === 'inDOM') {
-          fn.call(this);
-        }
-      });
+      return;
     }
+    Ember.run.schedule('render', this, function() {
+      // don't run unless still inDOM
+      if (this._state === 'inDOM') {
+        fn.call(this);
+      }
+    });
   };
 
   return Ember.observer.apply(null, keys.concat([observer]));
 }
 
 export default Ember.Mixin.create( {
-  colpickLayoutName: 'hex',
+  colpickLayout: 'hex',
   colorScheme: 'dark',
   classNames: [ 'ember-col-pick' ],
   flat: true, // [true/false] render as popup (true) rendering inline (false)
@@ -33,7 +31,7 @@ export default Ember.Mixin.create( {
 
   _colpick: undefined,
 
-  configDidChange: onRenderObserver('colorScheme', 'layoutName', 'flat', function(){
+  configDidChange: onRenderObserver('colorScheme', 'colpickLayout', 'flat', function(){
     this._tearDownColpick();
     this.rerender();
   }),
@@ -46,7 +44,7 @@ export default Ember.Mixin.create( {
   }),
 
   _setupColpick: function() {
-    var layout = this.get('colpickLayoutName');
+    var layout = this.get('colpickLayout');
     var colorScheme = this.get('colorScheme');
 
     if (layout && colorScheme) {
@@ -88,6 +86,7 @@ export default Ember.Mixin.create( {
   },
 
   didInsertElement: function () {
+    this._super();
     this._setupColpick();
   },
 
@@ -100,6 +99,7 @@ export default Ember.Mixin.create( {
 
   willDestroyElement: function () {
     this._tearDownColpick();
+    this._super();
   }
 });
 
