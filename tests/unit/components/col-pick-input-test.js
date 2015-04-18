@@ -88,7 +88,7 @@ test("two way binding with colpick", function() {
   equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
 });
 
-test("correctly updates value with hashtag when set", function() {
+test("correctly updates value with hashtag when set", function(assert) {
   var component = this.subject({
     useHashtag: true
   });
@@ -99,7 +99,7 @@ test("correctly updates value with hashtag when set", function() {
   
   Ember.run(component, 'set', 'value', '#FFFFFF');
   
-  equal(Ember.run(component, 'get', 'previewValue'), '#ffffff');
-  equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
-  equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
+  assert.equal(Ember.run(component, 'get', 'previewValue'), '#ffffff');
+  assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
+  assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
 });
