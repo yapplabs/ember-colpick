@@ -28,6 +28,7 @@ export default Ember.Mixin.create( {
   flat: true, // [true/false] render as popup (true) rendering inline (false)
   value: null,
   previewValue: null,
+  useHashtag: false,
 
   _colpick: undefined,
 
@@ -54,6 +55,10 @@ export default Ember.Mixin.create( {
         submit: 0,
         flat: this.get('flat'),
         onChange: Ember.run.bind(this, function(hsb, hex, rgb, el, bySetColor) {
+          if (this.get('useHashtag')) {
+            hex = '#' + hex;
+          }
+          
           this.set('previewValue', hex);
 
           if (!bySetColor) {
