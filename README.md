@@ -1,6 +1,6 @@
 # Ember-colpick [![Build Status](https://travis-ci.org/yapplabs/ember-colpick.svg)](https://travis-ci.org/yapplabs/ember-colpick) [![Ember Observer Score](http://emberobserver.com/badges/ember-colpick.svg)](http://emberobserver.com/addons/ember-colpick)
 
-A color picker component for ember using http://colpick.com/
+A color picker component for ember using https://github.com/mrgrain/colpick
 
 ## Usage
 
