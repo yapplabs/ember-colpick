@@ -54,14 +54,14 @@ export default Ember.Mixin.create( {
         colorScheme: colorScheme,
         submit: 0,
         flat: this.get('flat'),
-        onChange: Ember.run.bind(this, function(hsb, hex, rgb, el, bySetColor) {
+        onChange: Ember.run.bind(this, function(hsb, hex) {
           if (this.get('useHashtag')) {
             hex = '#' + hex;
           }
           
           this.set('previewValue', hex);
 
-          if (!bySetColor) {
+          if (this._isValidPreviewValue()) {
             this.set('value', hex);
           }
         }),
@@ -82,6 +82,12 @@ export default Ember.Mixin.create( {
         colpick.colpickSetColor(value);
       }
     }
+  },
+
+  _isValidPreviewValue: function() {
+    var previewHex = this.get('previewValue');
+    var validityRegex = this.get('useHashtag') ? /^#[a-f0-9]{6}$/i : /^[a-f0-9]{6}$/i;
+    return Ember.isPresent(previewHex.match(validityRegex));
   },
 
   popup: function() {
