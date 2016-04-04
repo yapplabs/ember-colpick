@@ -79,3 +79,20 @@ test("correctly renders initial bound value", function(assert) {
   assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
   assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
 });
+
+test('sets the color only if a valid color is typed into the input', function(assert) {
+  var component = this.subject();
+  this.render();
+
+  component.popup();
+
+  Ember.run(function() {
+    component.$('.colpick_hex_field input').val('ff000').keyup();
+  });
+  assert.equal(component.get('value'), null, 'After receiving five hex characters we do not yet have a valid color to set');
+
+  Ember.run(function() {
+    component.$('.colpick_hex_field input').val('ff0000').keyup();
+  });
+  assert.equal(component.get('value'), 'ff0000', 'After receiving six hex characters the color is set');
+});
