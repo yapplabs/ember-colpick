@@ -1,6 +1,6 @@
 {
   "name": "ember-colpick",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "color picker component for ember using http://colpick.com/",
   "directories": {
     "doc": "doc",
