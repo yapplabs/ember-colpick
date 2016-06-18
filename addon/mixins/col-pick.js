@@ -63,6 +63,7 @@ export default Ember.Mixin.create( {
 
           if (this._isValidPreviewValue()) {
             this.set('value', hex);
+            this.sendAction('onChange', hex);
           }
         }),
         onHide: Ember.run.bind(this, function(){
