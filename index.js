@@ -9,7 +9,7 @@ module.exports = {
   blueprintsPath: function() {
     return path.join(__dirname, 'blueprints');
   },
-  treeForVendor(defaultTree) {
+  treeForVendor: function(defaultTree) {
     var trees = [];
 
     if (defaultTree) {
