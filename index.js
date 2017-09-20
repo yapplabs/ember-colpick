@@ -21,7 +21,10 @@ module.exports = {
       destDir: 'colpick'
     });
 
-    browserVendorLib = map(browserVendorLib, (content) => `if (typeof FastBoot === 'undefined') { ${content} }`);
+    browserVendorLib = map(browserVendorLib, function(content) {
+        return "if (typeof FastBoot === 'undefined') { " + content + " }";
+    });
+
     trees.push(browserVendorLib);
     return new mergeTrees(trees);
   },
