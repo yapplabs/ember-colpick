@@ -58,7 +58,7 @@ export default Ember.Mixin.create( {
           if (this.get('useHashtag')) {
             hex = '#' + hex;
           }
-          
+
           this.set('previewValue', hex);
 
           if (this._isValidPreviewValue()) {
@@ -67,6 +67,25 @@ export default Ember.Mixin.create( {
         }),
         onHide: Ember.run.bind(this, function(){
           this.sendAction('onHide');
+        }),
+        onShow: Ember.run.bind(this, function(el) {
+          // Change the position of the colorpicker based on the window height
+          let winHeight = this.$(window).outerHeight();
+          let inputField = this.$();
+          let inputFieldPosition = inputField.offset();
+          let inputFieldHeight = inputField.outerHeight();
+          let colorPickerElem = this.$(el);
+          let colorPickerHeight = colorPickerElem.outerHeight();
+          let colorPickerTop = 0;
+
+          if (winHeight < (inputFieldPosition.top + inputFieldHeight + colorPickerHeight)) {
+            colorPickerTop = inputFieldPosition.top - colorPickerHeight;
+          } else {
+            colorPickerTop = inputFieldPosition.top + inputFieldHeight;
+          }
+          colorPickerElem.css({
+            'top': colorPickerTop + 'px'
+          });
         })
       });
 
@@ -113,4 +132,3 @@ export default Ember.Mixin.create( {
     this._super();
   }
 });
-
