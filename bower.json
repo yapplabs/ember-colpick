@@ -1,6 +1,0 @@
-{
-  "name": "ember-colpick",
-  "dependencies": {
-    "colpick": "~2.0.2"
-  }
-}
