@@ -108,7 +108,9 @@ export default Mixin.create( {
 
   _tearDownColpick: function() {
     if (this._colpick) {
-      this.popup().remove();
+      if (!this.isDestroying) {
+        this.popup().remove();
+      }
       this._colpick = undefined;
     }
   },
