@@ -66,6 +66,7 @@ export default Ember.Mixin.create( {
           }
         }),
         onHide: Ember.run.bind(this, function(){
+          // eslint-disable-next-line ember/closure-actions
           this.sendAction('onHide');
         })
       });
