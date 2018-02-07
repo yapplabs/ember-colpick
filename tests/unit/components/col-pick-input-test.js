@@ -6,8 +6,7 @@ import {
 } from 'ember-qunit';
 
 moduleForComponent('col-pick-input', 'ColPickComponentInput', {
-  // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  unit: true
 });
 
 test('it renders', function(assert) {
@@ -42,7 +41,7 @@ test('hiding fires the onHide action', function(assert) {
   var component = this.subject();
   this.render();
 
-  var targetObject = {
+  var target = {
     hideAction: function(){
       assert.ok(true, 'hide action was called!');
       done();
@@ -50,7 +49,7 @@ test('hiding fires the onHide action', function(assert) {
   };
 
   component.set('onHide', 'hideAction');
-  component.set('targetObject', targetObject);
+  component.set('target', target);
 
   run(component.$(), 'trigger', 'click');
   run(component.$(), 'trigger', 'mousedown'); // simulate clicking outside
@@ -94,13 +93,13 @@ test("correctly updates value with hashtag when set", function(assert) {
   var component = this.subject({
     useHashtag: true
   });
-  
-  this.append();
-  
+
+  this.render();
+
   var popup = component.popup();
-  
+
   run(component, 'set', 'value', '#FFFFFF');
-  
+
   assert.equal(run(component, 'get', 'previewValue'), '#ffffff');
   assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
   assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
