@@ -1,16 +1,20 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { isPresent } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
+import { observer } from '@ember/object';
+import { schedule, bind } from '@ember/runloop';
 
 function onRenderObserver(/*keys..., fn*/) {
   var args = Array.prototype.slice.call(arguments);
   var fn = args.slice(-1)[0];
   var keys = args.slice(0, -1);
 
-  var observer = function() {
+  var observerFunction = function() {
     if (this._state !== 'inDOM') {
       // don't schedule unless inDOM
       return;
     }
-    Ember.run.schedule('render', this, function() {
+    schedule('render', this, function() {
       // don't run unless still inDOM
       if (this._state === 'inDOM') {
         fn.call(this);
@@ -18,10 +22,10 @@ function onRenderObserver(/*keys..., fn*/) {
     });
   };
 
-  return Ember.observer.apply(null, keys.concat([observer]));
+  return observer.apply(null, keys.concat([observerFunction]));
 }
 
-export default Ember.Mixin.create( {
+export default Mixin.create( {
   colpickLayout: 'hex',
   colorScheme: 'dark',
   classNames: [ 'ember-col-pick' ],
@@ -54,18 +58,19 @@ export default Ember.Mixin.create( {
         colorScheme: colorScheme,
         submit: 0,
         flat: this.get('flat'),
-        onChange: Ember.run.bind(this, function(hsb, hex) {
+        onChange: bind(this, function(hsb, hex) {
           if (this.get('useHashtag')) {
             hex = '#' + hex;
           }
-          
+
           this.set('previewValue', hex);
 
           if (this._isValidPreviewValue()) {
             this.set('value', hex);
           }
         }),
-        onHide: Ember.run.bind(this, function(){
+        onHide: bind(this, function(){
+          // eslint-disable-next-line ember/closure-actions
           this.sendAction('onHide');
         })
       });
@@ -87,12 +92,12 @@ export default Ember.Mixin.create( {
   _isValidPreviewValue: function() {
     var previewHex = this.get('previewValue');
     var validityRegex = this.get('useHashtag') ? /^#[a-f0-9]{6}$/i : /^[a-f0-9]{6}$/i;
-    return Ember.isPresent(previewHex.match(validityRegex));
+    return isPresent(previewHex.match(validityRegex));
   },
 
   popup: function() {
     if (this._state === 'inDOM') {
-      return Ember.$('#' + this.$().data('colpickId'));
+      return $('#' + this.$().data('colpickId'));
     }
   },
 
@@ -103,7 +108,9 @@ export default Ember.Mixin.create( {
 
   _tearDownColpick: function() {
     if (this._colpick) {
-      this.popup().remove();
+      if (!this.isDestroying) {
+        this.popup().remove();
+      }
       this._colpick = undefined;
     }
   },

@@ -1,13 +1,12 @@
+import $ from 'jquery';
+import { run } from '@ember/runloop';
 import {
   moduleForComponent,
   test
 } from 'ember-qunit';
 
-import Ember from 'ember';
-
 moduleForComponent('col-pick', 'ColPickComponent', {
-  // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  unit: true
 });
 
 test('it renders', function(assert) {
@@ -39,13 +38,13 @@ test('destroying no longer leaks the popup', function(assert) {
 
   var popup = component.popup();
 
-  Ember.run(component, 'destroy');
+  run(component, 'destroy');
 
-  assert.equal(Ember.$(popup.selector).length, 0);
+  assert.equal($(popup.selector).length, 0);
 });
 
 function style(selector, scope) {
-  return Ember.$.trim(Ember.$(selector, scope).attr('style'));
+  return $.trim($(selector, scope).attr('style'));
 }
 
 test("two way binding with colpick", function(assert) {
@@ -55,12 +54,12 @@ test("two way binding with colpick", function(assert) {
 
   var popup = component.popup();
 
-  Ember.run(component, 'set', 'value', '000000');
+  run(component, 'set', 'value', '000000');
 
   assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(0, 0, 0);', 'a');
   assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(0, 0, 0);', 'b');
 
-  Ember.run(component, 'set', 'value', 'FFFFFF');
+  run(component, 'set', 'value', 'FFFFFF');
 
   assert.equal(style('.colpick_new_color', popup), 'background-color: rgb(255, 255, 255);');
   assert.equal(style('.colpick_current_color', popup), 'background-color: rgb(255, 255, 255);');
@@ -86,12 +85,12 @@ test('sets the color only if a valid color is typed into the input', function(as
 
   component.popup();
 
-  Ember.run(function() {
+  run(function() {
     component.$('.colpick_hex_field input').val('ff000').keyup();
   });
   assert.equal(component.get('value'), null, 'After receiving five hex characters we do not yet have a valid color to set');
 
-  Ember.run(function() {
+  run(function() {
     component.$('.colpick_hex_field input').val('ff0000').keyup();
   });
   assert.equal(component.get('value'), 'ff0000', 'After receiving six hex characters the color is set');

@@ -1,14 +1,15 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   colorScheme: 'dark',
   layout: 'full',
-  layouts: Ember.A([
+  layouts: A([
     'full',
     'hex',
     'rgbhex',
   ]),
-  colorSchemes: Ember.A([
+  colorSchemes: A([
     'dark',
     'light'
   ])

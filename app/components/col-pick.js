@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import ColPickMixin from 'ember-colpick/mixins/col-pick';
 
-export default Ember.Component.extend(ColPickMixin);
+export default Component.extend(ColPickMixin);
