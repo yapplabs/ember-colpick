@@ -16,6 +16,13 @@ popup for input color picker
 ```hbs
 {{col-pick-input value=color}}
 ```
+## Compatibility
+
+ember-colpick 1.0.0 requires ember-cli >= 2.15.0. You can use ember-colpick 0.x for older versions of ember-cli.
+
+## Upgrading from 0.x to 1.0.0
+
+In 1.0.0, we dropped bower and are getting jquery-colpick from npm instead. You can remove colpick from your bower.json file.
 
 ## Development
 
