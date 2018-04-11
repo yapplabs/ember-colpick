@@ -67,6 +67,7 @@ export default Mixin.create( {
 
           if (this._isValidPreviewValue()) {
             this.set('value', hex);
+            this.sendAction('onChange', hex);
           }
         }),
         onHide: bind(this, function(){
