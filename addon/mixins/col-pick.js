@@ -1,3 +1,5 @@
+/* eslint-disable ember/closure-actions */
+
 import $ from 'jquery';
 import { isPresent } from '@ember/utils';
 import Mixin from '@ember/object/mixin';
@@ -49,6 +51,7 @@ export default Mixin.create( {
   }),
 
   _setupColpick: function() {
+    var instance = this;
     var layout = this.get('colpickLayout');
     var colorScheme = this.get('colorScheme');
 
@@ -58,19 +61,18 @@ export default Mixin.create( {
         colorScheme: colorScheme,
         submit: 0,
         flat: this.get('flat'),
-        onChange: bind(this, function(hsb, hex) {
+        onChange: bind(this, function(hsb, hex, rgb, el, bySetColor) {
           if (this.get('useHashtag')) {
             hex = '#' + hex;
           }
 
           this.set('previewValue', hex);
 
-          if (this._isValidPreviewValue()) {
-            this.set('value', hex);
+          if (this._isValidPreviewValue() && !bySetColor) {
+            this._setColpickValue(hex);
           }
         }),
         onHide: bind(this, function(){
-          // eslint-disable-next-line ember/closure-actions
           this.sendAction('onHide');
         })
       });
@@ -79,6 +81,7 @@ export default Mixin.create( {
         var hexInputVal = this.value;
         if (hexInputVal.length === 6) {
           colpick.colpickSetColor(hexInputVal);
+          instance._setColpickValue(hexInputVal);
         }
       });
 
@@ -104,6 +107,11 @@ export default Mixin.create( {
   didInsertElement: function () {
     this._super();
     this._setupColpick();
+  },
+
+  _setColpickValue: function(value) {
+    this.set('value', value);
+    this.sendAction('onChange', value);
   },
 
   _tearDownColpick: function() {
