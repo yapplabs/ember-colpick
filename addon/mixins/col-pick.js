@@ -53,7 +53,7 @@ export default Mixin.create( {
     var colorScheme = this.get('colorScheme');
 
     if (layout && colorScheme) {
-      var colpick = this._colpick = this.$().colpick({
+      var colpick = this._colpick = this.element.addEventListener({
         layout: layout,
         colorScheme: colorScheme,
         submit: 0,
@@ -97,7 +97,7 @@ export default Mixin.create( {
 
   popup: function() {
     if (this._state === 'inDOM') {
-      return $('#' + this.$().data('colpickId'));
+      return $('#' + this.element.addEventListener('colpickId'));
     }
   },
 
