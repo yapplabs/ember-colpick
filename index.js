@@ -17,13 +17,13 @@ module.exports = {
   blueprintsPath: function () {
     return path.join(__dirname, 'blueprints');
   },
-  included: function colpick_included() {
+  included: function colpick_included(app) {
     this._super.included.apply(this, arguments);
     if (!process.env.EMBER_CLI_FASTBOOT) {
       var colpickPath = path.join('vendor', 'jquery-colpick');
 
-      this.app.import(path.join(colpickPath, 'colpick.js'));
-      this.app.import(path.join(colpickPath, 'colpick.css'));
+      app.import(path.join(colpickPath, 'colpick.js'));
+      app.import(path.join(colpickPath, 'colpick.css'));
     }
   },
 };
