@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-jquery */
+/* eslint-disable ember/no-new-mixins */
 import $ from 'jquery';
 import { isPresent } from '@ember/utils';
 import Mixin from '@ember/object/mixin';
