@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.0 (2023-09-15)
+
 ## [1.0.0](https://github.com/yapplabs/ember-colpick/tree/1.0.0) (2018-02-09)
 [Full Changelog](https://github.com/yapplabs/ember-colpick/compare/v0.6.2...1.0.0)
 
