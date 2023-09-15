@@ -60,7 +60,7 @@ export default Mixin.create({
     var colorScheme = this.colorScheme;
 
     if (layout && colorScheme) {
-      var colpick = (this._colpick = this.$().colpick({
+      var colpick = (this._colpick = $(this.element).colpick({
         layout: layout,
         colorScheme: colorScheme,
         submit: 0,
@@ -78,8 +78,7 @@ export default Mixin.create({
           }
         },
         onHide: () => {
-          // eslint-disable-next-line ember/closure-actions
-          this.sendAction('onHide');
+          this.onHide?.();
         },
       }));
 
@@ -105,7 +104,7 @@ export default Mixin.create({
 
   popup: function () {
     if (this._state === 'inDOM') {
-      return $('#' + this.$().data('colpickId'));
+      return $('#' + $(this.element).data('colpickId'));
     }
   },
 
