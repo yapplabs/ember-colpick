@@ -1,5 +1,15 @@
 # Change Log
 
+
+## v2.1.0 (2023-09-15)
+
+#### :rocket: Enhancement
+* [#43](https://github.com/yapplabs/ember-colpick/pull/43) Update to ember 3.28 ([@lukemelia](https://github.com/lukemelia))
+* [#42](https://github.com/yapplabs/ember-colpick/pull/42) Eliminate use of deprecated APIs in ember 3.24 ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 1
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+
 ## v2.0.0 (2023-09-15)
 
 ## [1.0.0](https://github.com/yapplabs/ember-colpick/tree/1.0.0) (2018-02-09)
