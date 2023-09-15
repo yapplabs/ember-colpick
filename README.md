@@ -19,7 +19,7 @@ popup for input color picker
 ## Compatibility
 
 ember-colpick 1.0.0 requires ember-cli >= 2.15.0. You can use ember-colpick 0.x for older versions of ember-cli.
-ember-colpick 2.0.0 requires ember-cli >= 3.24.0.
+ember-colpick 2.0.0 requires ember-cli >= 3.24.0. It is not yet compatible with ember 4.0+
 
 ## Upgrading from 0.x to 1.0.0
 
