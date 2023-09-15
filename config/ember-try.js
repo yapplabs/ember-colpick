@@ -30,6 +30,14 @@ module.exports = async function () {
         },
       },
       {
+        name: 'ember-lts-4.4',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.4.0',
+          },
+        },
+      },
+      {
         name: 'ember-classic',
         env: {
           EMBER_OPTIONAL_FEATURES: JSON.stringify({
