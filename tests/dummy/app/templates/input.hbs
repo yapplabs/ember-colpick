@@ -1,19 +1,22 @@
-{{col-pick-input value=color
-           previewValue=previewColor
-           colorScheme=colorScheme
-           colpickLayout=layout}}
+<ColPickInput
+  @value={{this.color}}
+  @previewValue={{this.previewColor}}
+  @colorScheme={{this.colorScheme}}
+  @colpickLayout={{this.layout}}
+/>
 
-color: {{color}}
-preview: {{previewColor}}
+color: {{this.color}}
+preview: {{this.previewColor}}
 
 <h2>code</h2>
 
 <pre>
-\{{col-pick-input value=color
-           previewValue=previewColor
-           colorScheme=colorScheme
-           colpickLayout=layout}}
-
-color: \{{color}}
-preview: \{{previewColor}}
+&lt;ColPickInput
+    @value=\{{this.color}}
+    @previewValue=\{{this.previewColor}}
+    @colorScheme=\{{this.colorScheme}}
+    @colpickLayout=\{{this.layout}}
+/&gt;
+color: \{{this.color}}
+preview: \{{this.previewColor}}
 </pre>
