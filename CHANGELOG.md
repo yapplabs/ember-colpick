@@ -1,6 +1,19 @@
 # Change Log
 
 
+
+## v2.2.0 (2023-10-10)
+
+#### :rocket: Enhancement
+* [#47](https://github.com/yapplabs/ember-colpick/pull/47) Add correct re-exports of components to future-proof for embroider ([@achambers](https://github.com/achambers))
+
+#### :bug: Bug Fix
+* [#46](https://github.com/yapplabs/ember-colpick/pull/46) Fix how vendored assets are imported to work when addon is a dependency of another addon ([@achambers](https://github.com/achambers))
+
+#### Committers: 2
+- Aaron Chambers ([@achambers](https://github.com/achambers))
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+
 ## v2.1.0 (2023-09-15)
 
 #### :rocket: Enhancement
